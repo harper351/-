@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Features from './components/Features';
 import InvisibleTaiwan from './components/InvisibleTaiwan';
 import VideoGuide from './components/VideoGuide';
 import VisitInfo from './components/VisitInfo';
@@ -15,6 +16,7 @@ function App() {
       <Hero />
       <main>
         <About />
+        <Features />
         <InvisibleTaiwan />
         <VideoGuide />
         <VisitInfo />

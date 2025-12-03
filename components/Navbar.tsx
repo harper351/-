@@ -15,7 +15,8 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: '關於鎮門宮', href: '#about' },
-    { name: '看不見台灣預告片', href: '#invisible-taiwan' },
+    { name: '特色文物', href: '#features' },
+    { name: '看不見台灣', href: '#invisible-taiwan' },
     { name: '影音導覽', href: '#video-guide' },
     { name: '參拜資訊', href: '#visit' },
   ];

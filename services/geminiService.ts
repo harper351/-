@@ -18,15 +18,30 @@ const TEMPLE_SYSTEM_INSTRUCTION = `
 - 保持回答精簡但資訊豐富，不要長篇大論到讓人疲乏。
 `;
 
+// Helper to get API Key compatible with both Node (process.env) and Vite (import.meta.env)
+const getApiKey = (): string => {
+  // @ts-ignore
+  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_KEY) {
+    // @ts-ignore
+    return import.meta.env.VITE_API_KEY;
+  }
+  return process.env.API_KEY || '';
+};
+
+const apiKey = getApiKey();
+
 // Initialize the client
-// NOTE: Process.env.API_KEY is guaranteed to be available in this environment.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: apiKey });
 
 export const sendMessageToGemini = async (
   history: Message[],
   newMessage: string
 ): Promise<string> => {
   try {
+    if (!apiKey) {
+      return "系統設定錯誤：找不到 API 金鑰，請聯繫管理員。";
+    }
+
     // Create a chat session
     const chat = ai.chats.create({
       model: 'gemini-2.5-flash',
